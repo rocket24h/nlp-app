@@ -1,0 +1,39 @@
+<mxfile host="app.diagrams.net">
+    <diagram name="Component - LLM + Neo4j" id="comp2">
+      <mxGraphModel dx="1150" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <root>
+          <mxCell id="0"/>
+          <mxCell id="1" parent="0"/>
+  
+          <mxCell id="localDocs" value="📁 Stored Documents (local)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+            <mxGeometry x="20" y="100" width="240" height="60" as="geometry"/>
+          </mxCell>
+  
+          <mxCell id="llm" value="🧠 LLM via API (OpenAI / others)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+            <mxGeometry x="280" y="100" width="250" height="60" as="geometry"/>
+          </mxCell>
+  
+          <mxCell id="wrapper" value="🔗 LlamaIndex Wrapper" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+            <mxGeometry x="560" y="100" width="220" height="60" as="geometry"/>
+          </mxCell>
+  
+          <mxCell id="neo4j" value="🗂️ Neo4j Database (Graph Storage)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+            <mxGeometry x="820" y="100" width="250" height="60" as="geometry"/>
+          </mxCell>
+  
+          <mxCell id="e1" style="endArrow=block;" edge="1" parent="1" source="localDocs" target="llm">
+            <mxGeometry relative="1" as="geometry"/>
+          </mxCell>
+  
+          <mxCell id="e2" style="endArrow=block;" edge="1" parent="1" source="llm" target="wrapper">
+            <mxGeometry relative="1" as="geometry"/>
+          </mxCell>
+  
+          <mxCell id="e3" style="endArrow=block;" edge="1" parent="1" source="wrapper" target="neo4j">
+            <mxGeometry relative="1" as="geometry"/>
+          </mxCell>
+        </root>
+      </mxGraphModel>
+    </diagram>
+  </mxfile>
+  

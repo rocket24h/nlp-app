@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net">
+    <diagram name="Knowledge Graph App Architecture" id="6bGWuIuOeI_gvGxHYh5Z">
+      <mxGraphModel dx="1800" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <root>
+          <mxCell id="0"/>
+          <mxCell id="1" parent="0"/>
+  
+          <!-- Wikipedia Articles -->
+          <mxCell id="wiki" value="Wikipedia Articles" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;shape=ext;icon=images/icons48/tech3/globe.png;" vertex="1" parent="1">
+            <mxGeometry x="20" y="20" width="160" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Python Crawler -->
+          <mxCell id="crawler" value="Python Crawler" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;shape=ext;icon=images/icons48/tech3/user_group.png;" vertex="1" parent="1">
+            <mxGeometry x="20" y="100" width="160" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Local Storage -->
+          <mxCell id="localstorage" value="Local Storage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+            <mxGeometry x="200" y="100" width="120" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Gemini API -->
+          <mxCell id="gemini" value="Gemini API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+            <mxGeometry x="360" y="0" width="120" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Planned: Multiple LLM APIs -->
+          <mxCell id="plannedllms" value="✨ Planned: Multiple LLM APIs" style="rounded=1;dashed=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="1">
+            <mxGeometry x="500" y="0" width="200" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Summary Request -->
+          <mxCell id="summary" value="Summary Request" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;shape=ext;icon=images/icons48/tech3/notes.png;" vertex="1" parent="1">
+            <mxGeometry x="20" y="180" width="160" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Streamlit UI -->
+          <mxCell id="ui" value="Streamlit UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;shape=ext;icon=images/icons48/tech3/windows.png;" vertex="1" parent="1">
+            <mxGeometry x="20" y="300" width="160" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Gamini -->
+          <mxCell id="gamini" value="Gamini" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;shape=ext;icon=images/icons48/tech3/robot02.png;" vertex="1" parent="1">
+            <mxGeometry x="320" y="100" width="120" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Neo4j -->
+          <mxCell id="neo4j" value="Neo4j" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;shape=ext;icon=images/icons48/tech3/database.png;" vertex="1" parent="1">
+            <mxGeometry x="480" y="100" width="120" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- PyVis + Streamlit -->
+          <mxCell id="pyvis" value="PyVis + Streamlit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+            <mxGeometry x="480" y="220" width="140" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Entity Extraction Group -->
+          <mxCell id="entityex" style="group" vertex="1" parent="1">
+            <mxGeometry x="200" y="180" width="240" height="140" as="geometry"/>
+          </mxCell>
+          <mxCell id="entityex_label" value="Entity Extraction" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#b85450;" vertex="1" parent="entityex">
+            <mxGeometry x="0" y="-20" width="120" height="20" as="geometry"/>
+          </mxCell>
+          <mxCell id="retriever1" value="Retriever" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="entityex">
+            <mxGeometry x="10" y="10" width="100" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell id="nodeparser" value="NodeParser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="entityex">
+            <mxGeometry x="10" y="60" width="100" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell id="graphindex" value="Graph Index" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="entityex">
+            <mxGeometry x="10" y="110" width="100" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell id="retriever2" value="Retriever" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="entityex">
+            <mxGeometry x="120" y="10" width="100" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell id="queryengine" value="Query Engine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="entityex">
+            <mxGeometry x="120" y="60" width="100" height="40" as="geometry"/>
+          </mxCell>
+  
+          <!-- Connectors -->
+          <mxCell id="conn1" style="endArrow=block" edge="1" parent="1" source="wiki" target="crawler"><mxGeometry relative="1" as="geometry"/></mxCell>
+          <mxCell id="conn2" style="endArrow=block" edge="1" parent="1" source="crawler" target="localstorage"><mxGeometry relative="1" as="geometry"/></mxCell>
+          <mxCell id="conn3" style="endArrow=block" edge="1" parent="1" source="localstorage" target="gamini"><mxGeometry relative="1" as="geometry"/></mxCell>
+          <mxCell id="conn4" style="endArrow=block" edge="1" parent="1" source="gamini" target="neo4j"><mxGeometry relative="1" as="geometry"/></mxCell>
+          <mxCell id="conn5" style="endArrow=block" edge="1" parent="1" source="summary" target="gamini"><mxGeometry relative="1" as="geometry"/></mxCell>
+          <mxCell id="conn6" style="endArrow=block" edge="1" parent="1" source="pyvis" target="ui"><mxGeometry relative="1" as="geometry"/></mxCell>
+          <mxCell id="conn7" style="endArrow=block" edge="1" parent="1" source="neo4j" target="pyvis"><mxGeometry relative="1" as="geometry"/></mxCell>
+  
+        </root>
+      </mxGraphModel>
+    </diagram>
+  </mxfile>
+  

@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net">
+    <diagram name="Knowledge Graph App - General Flow" id="flow1">
+        <mxGraphModel dx="1300" dy="660" grid="1" gridSize="10" guides="1" tooltips="1" connect="1"
+            arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0"
+            shadow="0">
+            <root>
+                <mxCell id="0" />
+                <mxCell id="1" parent="0" />
+
+                <!-- User Input -->
+                <mxCell id="user" value="🧑 User provides Wikipedia article links"
+                    style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;"
+                    vertex="1" parent="1">
+                    <mxGeometry x="20" y="100" width="250" height="60" as="geometry" />
+                </mxCell>
+
+                <!-- Crawler -->
+                <mxCell id="crawler" value="🔎 Python Crawler retrieves article"
+                    style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;"
+                    vertex="1" parent="1">
+                    <mxGeometry x="300" y="100" width="250" height="60" as="geometry" />
+                </mxCell>
+
+                <!-- Local Storage -->
+                <mxCell id="storage" value="💾 Stored locally for reuse"
+                    style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;"
+                    vertex="1" parent="1">
+                    <mxGeometry x="580" y="100" width="250" height="60" as="geometry" />
+                </mxCell>
+
+                <!-- LLM Extraction -->
+                <mxCell id="llm" value="🤖 LLM extracts entities + relations"
+                    style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;"
+                    vertex="1" parent="1">
+                    <mxGeometry x="860" y="100" width="250" height="60" as="geometry" />
+                </mxCell>
+
+                <!-- Neo4j -->
+                <mxCell id="neo4j" value="🗂️ Stored in Neo4j via LlamaIndex"
+                    style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;"
+                    vertex="1" parent="1">
+                    <mxGeometry x="1140" y="100" width="250" height="60" as="geometry" />
+                </mxCell>
+
+                <!-- Visualization -->
+                <mxCell id="viz" value="📈 PyVis + Streamlit visualization"
+                    style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;"
+                    vertex="1" parent="1">
+                    <mxGeometry x="860" y="200" width="250" height="60" as="geometry" />
+                </mxCell>
+
+                <!-- Summary -->
+                <mxCell id="summary" value="📝 User can get summaries (LLM)"
+                    style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;"
+                    vertex="1" parent="1">
+                    <mxGeometry x="580" y="200" width="250" height="60" as="geometry" />
+                </mxCell>
+
+                <!-- Planned -->
+                <mxCell id="planned" value="✨ Planned: Entity-based querying"
+                    style="rounded=1;dashed=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;"
+                    vertex="1" parent="1">
+                    <mxGeometry x="1140" y="200" width="250" height="60" as="geometry" />
+                </mxCell>
+
+                <!-- Arrows -->
+                <mxCell id="e1" style="endArrow=block;html=1;" edge="1" source="user"
+                    target="crawler" parent="1">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="e2" style="endArrow=block;html=1;" edge="1" source="crawler"
+                    target="storage" parent="1">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="e3" style="endArrow=block;html=1;" edge="1" source="storage"
+                    target="llm" parent="1">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="e4" style="endArrow=block;html=1;" edge="1" source="llm" target="neo4j"
+                    parent="1">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="e5" style="endArrow=block;html=1;" edge="1" source="neo4j" target="viz"
+                    parent="1">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="e6" style="endArrow=block;html=1;" edge="1" source="storage"
+                    target="summary" parent="1">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+                <mxCell id="e7" style="endArrow=block;dashed=1;html=1;" edge="1" source="viz"
+                    target="planned" parent="1">
+                    <mxGeometry relative="1" as="geometry" />
+                </mxCell>
+
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
+
