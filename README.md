@@ -111,7 +111,6 @@ MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 100
 
 - `llama-index`
 - `neo4j`
-- `google-generativeai`
 - `wikipedia`
 - `tqdm`
 - `python-dotenv`

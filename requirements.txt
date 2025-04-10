@@ -1,0 +1,8 @@
+wikipedia==1.4.0
+llama-index==0.12.28
+llama-index-embeddings-huggingface==0.5.2
+llama-index-llms-google-genai==0.1.7
+llama-index-graph-stores-neo4j==0.4.6
+neo4j==5.28.1
+transformers==4.50.3
+python-dotenv==1.1.0
