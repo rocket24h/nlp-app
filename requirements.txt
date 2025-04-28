@@ -6,3 +6,5 @@ llama-index-graph-stores-neo4j==0.4.6
 neo4j==5.28.1
 transformers==4.50.3
 python-dotenv==1.1.0
+scikit-learn==1.6.1
+spacy==3.8.5

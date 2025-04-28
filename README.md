@@ -4,6 +4,39 @@ This project fetches Wikipedia pages, extracts their content, and builds a knowl
 
 ---
 
+## Task notes
+
+### 28/04
+
+- Quang: Chạy file init_test.py, nhớ thay cái biến TEST_TOPICS bằng tổng hợp mấy cái TÊN trang wikipedia. VD:
+
+```python
+TEST_TOPICS = [
+    "Python (programming language)",
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Natural Language Processing",
+    "Computer Vision",
+    "Deep Learning",
+    "Neural Networks",
+    "Data Science",
+    "Big Data",
+    "Cloud Computing",
+]
+```
+
+Cái thêm tài liệu sẽ hơi lâu, tầm 5p hay sao đó. Ngồi đợi nó báo thêm xong thì ok.
+
+Sau khi thêm được mấy cái node trên database rồi thì chạy file basic_test.py. Cần implement hàm đọc file QA, cái kết quả của kg_index.query(...) sẽ là câu trả lời mô hình mình. Chọn 2 cái metrics để đánh giá rồi note lại là được.
+
+- Thắng: Để lưu tài liệu wiki thì chạy file init_test.py NHỚ COMMENT dòng thực thi sau để không cập nhật database trên neo4j:
+
+```python
+kg.add_documents_from_texts(article_list)
+```
+
+Implement thêm một hàm summarize dựa trên mấy cái file .txt đã lưu. Hiện tại nó sẽ lưu trong thư mục trong biến môi trường DOCS_PATH. Implement thêm hàm này trong class KGIndex. Có thể tạo thêm một file test để test cái summarize.
+
 ## 🚀 Features
 
 - Automatically retrieves and stores content from selected Wikipedia pages.
@@ -51,6 +84,9 @@ NEO4J_PASSWORD=password
 
 # Directory to store downloaded Wikipedia docs
 DOCS_PATH=./wiki_docs
+
+# Directory to local graph stores
+PERSIST_PATH=./graph_store
 ```
 
 > ✅ You must have access to Google Gemini API and a running Neo4j database.

@@ -1,0 +1,186 @@
+from llama_index.llms.google_genai import GoogleGenAI
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.core.node_parser import SentenceSplitter
+from llama_index.core import (
+    SimpleDirectoryReader,
+    PropertyGraphIndex,
+    StorageContext,
+    load_index_from_storage,
+    Document,
+)
+from llama_index.graph_stores.neo4j import Neo4jPropertyGraphStore
+from dotenv import load_dotenv
+
+import neo4j
+import networkx as nx
+from networkx import DiGraph
+import os
+import logging
+from typing import Optional
+import nest_asyncio
+import time
+import re
+
+
+nest_asyncio.apply()
+
+
+load_dotenv()
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+
+class KGIndex:
+    def __init__(self, config: dict, graph: Optional[nx.DiGraph] = None):
+
+        self.graph = graph or nx.DiGraph()
+
+        self.llm = config.get("llm", GoogleGenAI(
+            model="gemini-2.0-flash", temperature=0.2, max_output_tokens=256
+        ))
+
+        self.embedding_model = config.get(
+            "embedding_model", HuggingFaceEmbedding("sentence-transformers/all-MiniLM-L6-v2"))
+
+        # Setup Neo4j instance
+        if not self.verify_neo4j_connection():
+            raise Exception(
+                "Failed to connect to Neo4j. Please check your connection settings.")
+
+        self.graph_store = Neo4jPropertyGraphStore(
+            url=os.environ.get("NEO4J_URL", "bolt://localhost:7687"),
+            username=os.environ.get("NEO4J_USERNAME", "neo4j"),
+            password=os.environ.get("NEO4J_PASSWORD", "password"),
+            database=os.environ.get("NEO4J_DATABASE", "neo4j"),
+        )
+
+        self.llm_extractors = None
+
+        # Setup PropertyGraphIndex for the knowledge graph
+        self.index = PropertyGraphIndex.from_existing(
+            llm=self.llm,
+            embed_model=self.embedding_model,
+            property_graph_store=self.graph_store,
+        )
+
+        self.retriever = self.index.as_retriever(
+            include_text=True,
+        )
+
+        self.query_engine = self.index.as_query_engine(
+            # response_mode="tree_summarize",
+            verbose=True,
+            llm=self.llm,
+        )
+
+    def verify_neo4j_connection(self):
+        try:
+            with neo4j.GraphDatabase.driver(
+                    os.environ.get("NEO4J_URL", "bolt://localhost:7687"),
+                    auth=(os.environ.get("NEO4J_USERNAME", "neo4j"),
+                          os.environ.get("NEO4J_PASSWORD", "password")),
+            ) as driver:
+                with driver.session() as session:
+                    session.run("RETURN 1")
+            logger.info("Connected to Neo4j successfully.")
+
+            # Check if the database has
+        except Exception as e:
+            logger.error(f"Failed to connect to Neo4j: {e}")
+            return False
+        return True
+
+    def add_documents_from_directory(self, dir_path: str):
+        reader = SimpleDirectoryReader(dir_path)
+        documents = reader.load_data()
+        self._add_documents(documents)
+
+    def add_documents_from_texts(self, texts: list[str]):
+        documents = [Document(text=t) for t in texts]
+        self._add_documents(documents)
+
+    def _add_documents(self, documents: list[Document], retry_limit=5, retry_delay=10):
+        node_parser = SentenceSplitter()
+        nodes = node_parser.get_nodes_from_documents(documents)
+
+        for i, node in enumerate(nodes):
+            attempt = 0
+            while attempt < retry_limit:
+                try:
+                    self.index.insert_nodes([node])
+                    logger.info(
+                        f"Inserted node {i + 1}/{len(nodes)} : {node.get_content()[:100]}")
+                    break
+                except Exception as e:
+                    if "resource_exhausted" in str(e).lower():
+                        logger.warning(
+                            f"Rate limit hit on node {i}, retrying in {retry_delay}s...")
+                        time.sleep(retry_delay)
+                        attempt += 1
+                    else:
+                        logger.error(f"Failed to insert node {i}")
+                        break
+
+    def query(self, user_input: str, include_knowledge=True):
+        # context = self.retriever.retrieve(user_input)
+        # if include_knowledge:
+        #     return "\n".join([r.get_content() for r in context])
+
+        response = self.query_engine.query(user_input)
+        return response
+
+    def get_graph_on_query(self, query):
+        driver = neo4j.GraphDatabase.driver(
+            os.environ.get("NEO4J_URL", "bolt://localhost:7687"),
+            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"),
+                  os.environ.get("NEO4J_PASSWORD", "password")),
+        )
+
+        G = DiGraph()
+
+        context = self.retriever.retrieve(query)
+        if not context:
+            return "No relevant information found in the knowledge graph."
+
+        context_full = [r.get_content() for r in context]
+        context_full = "\n".join(context_full)
+
+        pattern = r"(.+?)\s*->\s*(.+?)\s*->\s*(.+)"
+
+        node_ids = set()
+        for line in context_full.splitlines():
+            match = re.match(pattern, line.strip())
+            if match:
+                source = match.group(1).strip()
+                target = match.group(3).strip()
+                node_ids.add(source)
+                node_ids.add(target)
+
+        node_ids = list(node_ids)
+        with driver.session() as session:
+            cypher_query = f"""
+            MATCH (n:__Entity__)
+            WHERE n.name IN {node_ids}
+            MATCH path = (n)-[*1..2]-(neighbor)
+            RETURN DISTINCT nodes(path) AS nodes, relationships(path) AS rels;
+            """
+
+            result = session.run(cypher_query, node_ids=node_ids)
+            # print(f"Query result: {list(result)}")
+            for record in list(result):
+                print(record.data())
+                input()
+                # src = record["source"]
+                # tgt = record["target"]
+                # src_label = record["source_label"]
+                # tgt_label = record["target_label"]
+                # rel = record["relationship"]
+
+                # G.add_node(src, label=src_label)
+                # G.add_node(tgt, label=tgt_label)
+                # G.add_edge(src, tgt, label=rel)
+
+        driver.close()
+
+        return G
