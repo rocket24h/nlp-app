@@ -74,6 +74,14 @@ class KGIndex:
             llm=self.llm,
         )
 
+        self.chat_engine = self.index.as_chat_engine(
+            # response_mode="tree_summarize",
+            verbose=True,
+            llm=self.llm,
+        )
+
+        self.search_depth = config.get("search_depth", 2)
+
     def verify_neo4j_connection(self):
         try:
             with neo4j.GraphDatabase.driver(
@@ -162,24 +170,26 @@ class KGIndex:
             cypher_query = f"""
             MATCH (n:__Entity__)
             WHERE n.name IN {node_ids}
-            MATCH path = (n)-[*1..2]-(neighbor)
+            MATCH path = (n)-[*1..{self.search_depth}]-(neighbor)
             RETURN DISTINCT nodes(path) AS nodes, relationships(path) AS rels;
             """
 
             result = session.run(cypher_query, node_ids=node_ids)
             # print(f"Query result: {list(result)}")
-            for record in list(result):
-                print(record.data())
-                input()
-                # src = record["source"]
-                # tgt = record["target"]
-                # src_label = record["source_label"]
-                # tgt_label = record["target_label"]
-                # rel = record["relationship"]
+            for record in result:
+                nodes = record["nodes"]
+                rels = record["rels"]
 
-                # G.add_node(src, label=src_label)
-                # G.add_node(tgt, label=tgt_label)
-                # G.add_edge(src, tgt, label=rel)
+                for node in nodes:
+                    node_id = str(node.id)
+                    node_label = node.get("name", node_id)
+                    G.add_node(node_id, label=node_label)
+
+                for rel in rels:
+                    start = str(rel.start_node.id)
+                    end = str(rel.end_node.id)
+                    rel_type = rel.type
+                    G.add_edge(start, end, label=rel_type)
 
         driver.close()
 

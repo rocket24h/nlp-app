@@ -81,8 +81,19 @@ def main():
             print("\nQuery Result:")
             # print(response)
 
-            # # Testing the graph fetch
-            # graph = kg.get_graph_on_query(user_query)
+            # Testing the graph fetch
+            graph = kg.get_graph_on_query(user_query)
+
+            pos = nx.spring_layout(graph)
+            nx.draw(graph, pos, with_labels=True,
+                    labels=nx.get_node_attributes(graph, 'label'),
+                    node_color='lightgreen', node_size=2000, font_size=10)
+
+            edge_labels = nx.get_edge_attributes(graph, 'label')
+            nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_labels)
+
+            plt.title("Neo4j Aura Graph Visualization")
+            plt.show()
 
             # if graph:
             #     from pyvis.network import Network
