@@ -194,3 +194,38 @@ class KGIndex:
         driver.close()
 
         return G
+
+    def summarize(self, doc_content: str) -> str:
+        response = self.llm.complete(f"Summarize the following document's content: {doc_content}")
+        return response.text
+    
+
+def load_KG_from_config() -> KGIndex:
+    model = os.environ.get("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
+
+    # Load the LLM configuration from environment variables or a config file
+    llm_config = {
+        "model": os.environ.get("LLM_MODEL", "gemini-2.0-flash"),
+        "temperature": float(os.environ.get("LLM_TEMPERATURE", 0.7)),
+        "max_tokens": int(os.environ.get("LLM_MAX_TOKENS", 1500)),
+    }
+
+    llm = GoogleGenAI(
+        model=llm_config["model"],
+        temperature=llm_config["temperature"],
+        max_tokens=llm_config["max_tokens"],
+    )
+    embedding_model = HuggingFaceEmbedding(
+        model_name=model
+    )
+
+    # Configuration for KGIndex
+    config = {
+        "persist_dir": os.environ.get("PERSIST_DIR", "./graph_store"),
+        "llm": llm,
+        "embedding_model": embedding_model,
+    }
+    print("Configuration loaded.")
+
+    kg_instance = KGIndex(config=config)
+    return kg_instance

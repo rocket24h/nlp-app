@@ -2,7 +2,7 @@
 # This file is used to test the initiation of the KGIndex and the loading of Wikipedia documents.
 
 import os.path as path
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import networkx as nx
 from dotenv import load_dotenv
 from llama_index.llms.google_genai import GoogleGenAI
@@ -38,7 +38,7 @@ def load_llm():
 
     # Load the LLM configuration from environment variables or a config file
     llm_config = {
-        "model": os.environ.get("LLM_MODEL", "geminmi-2.0-flash"),
+        "model": os.environ.get("LLM_MODEL", "gemini-2.0-flash"),
         "temperature": float(os.environ.get("LLM_TEMPERATURE", 0.7)),
         "max_tokens": int(os.environ.get("LLM_MAX_TOKENS", 1500)),
     }
@@ -79,8 +79,8 @@ def main():
     }
     print("Configuration loaded.")
     # Initialize KGIndex
-    kg = KGIndex(config)
-    print("KGIndex initialized.")
+    # kg = KGIndex(config)
+    # print("KGIndex initialized.")
     article_list = []
     for topic in tqdm(TEST_TOPICS):
         print(f"Fetching article for topic: {topic}")
@@ -93,8 +93,8 @@ def main():
         else:
             print(f"Failed to fetch article for topic: {topic}")
 
-    kg.add_documents_from_texts(article_list)
-    print("Documents added to KGIndex.")
+    # kg.add_documents_from_texts(article_list)
+    # print("Documents added to KGIndex.")
 
 
 if __name__ == "__main__":
