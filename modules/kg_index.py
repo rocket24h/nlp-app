@@ -9,6 +9,8 @@ from llama_index.core import (
     Document,
 )
 from llama_index.graph_stores.neo4j import Neo4jPropertyGraphStore
+from llama_index.core.llms import ChatMessage, MessageRole
+from llama_index.core.chat_engine import CondenseQuestionChatEngine
 from dotenv import load_dotenv
 
 import neo4j
@@ -20,6 +22,7 @@ from typing import Optional
 import nest_asyncio
 import time
 import re
+import json
 
 
 nest_asyncio.apply()
@@ -74,10 +77,26 @@ class KGIndex:
             llm=self.llm,
         )
 
+        self.chat_message = []
+
+        # Load chat history if it exists
+        self.load_chat_history()
+        custom_history = []
+
+        if len(self.chat_message) > 0:
+
+            for i in range(len(self.chat_message)):
+                if self.chat_message[i]["role"] == "user":
+                    custom_history.append(
+                        ChatMessage(role=MessageRole.USER, content=self.chat_message[i]["content"]))
+                if self.chat_message[i]["role"] == "assistant":
+                    custom_history.append(
+                        ChatMessage(role=MessageRole.ASSISTANT, content=self.chat_message[i]["content"]))
+
         self.chat_engine = self.index.as_chat_engine(
-            # response_mode="tree_summarize",
             verbose=True,
             llm=self.llm,
+            chat_history=custom_history,
         )
 
         self.search_depth = config.get("search_depth", 2)
@@ -137,6 +156,48 @@ class KGIndex:
 
         response = self.query_engine.query(user_input)
         return response
+
+    def chat(self, user_input: str):
+        response = self.chat_engine.chat(user_input)
+        self.chat_message.append(
+            {"role": "user", "content": user_input})
+        self.chat_message.append(
+            {"role": "assistant", "content": response.response})
+        return response.response
+
+    def stream_chat(self, user_input: str):
+        response = self.chat_engine.stream_chat(user_input)
+        self.chat_message.append({"user": user_input, "bot": response})
+        for chunk in response.response_gen:
+            yield chunk
+
+    def save_chat_history(self):
+        file_path = os.environ.get("CHAT_HISTORY_PATH", "./chat_history.json")
+        try:
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(self.chat_message, f, ensure_ascii=False, indent=4)
+        except Exception as e:
+            logger.error(f"Failed to save chat history: {e}")
+
+    def load_chat_history(self):
+        file_path = os.environ.get("CHAT_HISTORY_PATH", "./chat_history.json")
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as f:
+                self.chat_message = json.load(f)
+            return self.chat_message
+        else:
+            logger.warning(f"Chat history file not found: {file_path}")
+            self.chat_message = []
+            return self.chat_message
+
+    def delete_chat_history(self):
+        file_path = os.environ.get("CHAT_HISTORY_PATH", "./chat_history.json")
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            self.chat_message = []
+            logger.info("Chat history deleted.")
+        else:
+            logger.warning(f"Chat history file not found: {file_path}")
 
     def get_graph_on_query(self, query):
         driver = neo4j.GraphDatabase.driver(
