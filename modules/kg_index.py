@@ -4,13 +4,11 @@ from llama_index.core.node_parser import SentenceSplitter
 from llama_index.core import (
     SimpleDirectoryReader,
     PropertyGraphIndex,
-    StorageContext,
-    load_index_from_storage,
+
     Document,
 )
 from llama_index.graph_stores.neo4j import Neo4jPropertyGraphStore
 from llama_index.core.llms import ChatMessage, MessageRole
-from llama_index.core.chat_engine import CondenseQuestionChatEngine
 from dotenv import load_dotenv
 
 import neo4j
@@ -149,7 +147,7 @@ class KGIndex:
                         logger.error(f"Failed to insert node {i}")
                         break
 
-    def query(self, user_input: str, include_knowledge=True):
+    def query(self, user_input: str):
         # context = self.retriever.retrieve(user_input)
         # if include_knowledge:
         #     return "\n".join([r.get_content() for r in context])
@@ -257,12 +255,33 @@ class KGIndex:
         return G
 
     def summarize(self, doc_content: str) -> str:
-        response = self.llm.complete(f"Summarize the following document's content: {doc_content}")
+        response = self.llm.complete(
+            f"Summarize the following document's content: {doc_content}")
         return response.text
-    
+
+    def delete_graph_database(self):
+        driver = neo4j.GraphDatabase.driver(
+            os.environ.get("NEO4J_URL", "bolt://localhost:7687"),
+            auth=(os.environ.get("NEO4J_USERNAME", "neo4j"),
+                  os.environ.get("NEO4J_PASSWORD", "password")),
+        )
+
+        try:
+            with driver.session() as session:
+                cypher_query = f"""
+                MATCH (n)
+                DETACH DELETE n
+                """
+
+                session.run(cypher_query)
+            logger.info("Graph database deleted successfully.")
+        except Exception as e:
+            logger.error(f"Failed to delete graph database: {e}")
+
 
 def load_KG_from_config() -> KGIndex:
-    model = os.environ.get("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
+    model = os.environ.get(
+        "EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 
     # Load the LLM configuration from environment variables or a config file
     llm_config = {
@@ -286,7 +305,6 @@ def load_KG_from_config() -> KGIndex:
         "llm": llm,
         "embedding_model": embedding_model,
     }
-    print("Configuration loaded.")
 
     kg_instance = KGIndex(config=config)
     return kg_instance
