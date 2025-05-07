@@ -5,3 +5,5 @@ wiki_docs/
 lib/
 chat_history.json
 *.pyc
+tmp*
+.deepeval*

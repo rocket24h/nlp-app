@@ -9,6 +9,7 @@ from llama_index.core import (
 )
 from llama_index.graph_stores.neo4j import Neo4jPropertyGraphStore
 from llama_index.core.llms import ChatMessage, MessageRole
+from llama_index.core.postprocessor import SimilarityPostprocessor
 from dotenv import load_dotenv
 
 import neo4j
@@ -98,6 +99,9 @@ class KGIndex:
         )
 
         self.search_depth = config.get("search_depth", 2)
+
+        self.node_postprocessor = SimilarityPostprocessor(
+            similarity_cutoff=0.7)
 
     def verify_neo4j_connection(self):
         try:
@@ -191,8 +195,9 @@ class KGIndex:
     def delete_chat_history(self):
         file_path = os.environ.get("CHAT_HISTORY_PATH", "./chat_history.json")
         if os.path.exists(file_path):
-            os.remove(file_path)
             self.chat_message = []
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(self.chat_message, f, ensure_ascii=False, indent=4)
             logger.info("Chat history deleted.")
         else:
             logger.warning(f"Chat history file not found: {file_path}")
@@ -207,10 +212,11 @@ class KGIndex:
         G = DiGraph()
 
         context = self.retriever.retrieve(query)
-        if not context:
-            return "No relevant information found in the knowledge graph."
-
-        context_full = [r.get_content() for r in context]
+        filtered_context = self.node_postprocessor.postprocess_nodes(context)
+        if len(filtered_context) == 0:
+            logger.warning("No context found for the query.")
+            return "No context found for the query!"
+        context_full = [r.get_content() for r in filtered_context]
         context_full = "\n".join(context_full)
 
         pattern = r"(.+?)\s*->\s*(.+?)\s*->\s*(.+)"

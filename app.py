@@ -14,9 +14,7 @@ import streamlit.components.v1 as components
 import tempfile
 import matplotlib.colors as mcolors
 import networkx as nx
-from streamlit_chat import message as st_message
-import json
-from streamlit_option_menu import option_menu  # NEW
+from streamlit_option_menu import option_menu
 
 # Prevent PyTorch warning
 torch.classes.__path__ = []
@@ -84,6 +82,12 @@ if "graph_html" not in st.session_state:
 # === CHAT TAB ===
 if tab == "Chat":
     st.markdown("### 💬 Chat Box")
+
+    # Add a button to delete all chat messages
+    if st.button("🗑️ Clear Chat History"):
+        st.session_state.chat_history = []
+        kg_index.delete_chat_history()
+        st.success("Chat history cleared!")
 
     for chat_message in st.session_state.chat_history:
         with st.chat_message("user" if chat_message["role"] == "user" else "assistant"):
@@ -160,7 +164,7 @@ if tab == "Chat":
                 HtmlFile = open(tmp_file.name, 'r', encoding='utf-8')
                 st.session_state.graph_html = HtmlFile.read()
 
-    if st.session_state.graph_html:
+    if st.session_state.graph_html and st.session_state.chat_history != []:
         with st.expander("🧠 Show Knowledge Graph from Query", expanded=False):
             components.html(st.session_state.graph_html,
                             height=600, scrolling=True)
@@ -219,18 +223,17 @@ elif tab == "Documents":
     st.markdown("### 📂 Wikipedia Knowledge Base")
     docs_path = os.getenv("DOCS_PATH")
     if docs_path and os.path.isdir(docs_path):
-        text_files = [f for f in os.listdir(
+        text_files = [f.replace(".txt", "") for f in os.listdir(
             docs_path) if f.endswith(".txt")]
 
         for file in text_files:
             file_path = os.path.join(docs_path, file)
-            with open(file_path, 'r', encoding='utf-8') as f:
+            with open(file_path + ".txt", 'r', encoding='utf-8') as f:
                 content = f.read()
 
             with st.expander(f"📄 {file}"):
                 if st.button(f"Summarize {file}"):
                     with st.spinner("Summarizing..."):
-                        # Replace this with actual summary logic
                         try:
                             summary = kg_index.summarize(content)
                         except Exception as e:

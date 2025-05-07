@@ -1,0 +1,301 @@
+question,answer
+What is assembly language?,"Assembly language is a low-level programming language with a very strong correspondence between its instructions and the architecture's machine code instructions, often having a one-to-one relationship."
+What are some alternative names for assembly language?,Assembly language is also known as assembler language or symbolic machine code.
+What is the common abbreviation for assembly language?,The common abbreviations for assembly language are ASM or asm.
+"Besides machine instructions, what other elements are typically supported in assembly language?","Assembly language usually also supports constants, comments, assembler directives, symbolic labels (for memory locations and registers), and macros."
+Who is credited with the first use of a language to represent machine code instructions in assembly code?,"Kathleen and Andrew Donald Booth are credited with the first use of a language to represent machine code instructions in their 1947 work, Coding for A.R.C.."
+What is an assembler?,An assembler is a utility program that converts assembly code into executable machine code.
+"Who is generally attributed with coining the term ""assembler"" and in what publication?","Wilkes, Wheeler, and Gill are generally attributed with coining the term ""assembler"" in their 1951 book, The Preparation of Programs for an Electronic Digital Computer."
+"What did Wilkes, Wheeler, and Gill initially mean by the term ""assembler""?","They used the term to mean ""a program that assembles another program consisting of several sections into a single program""."
+What is the conversion process of assembly code into machine code called?,The conversion process is called assembly.
+"What is ""assembly time""?",Assembly time is the computational step when an assembler is processing a program.
+Why is each assembly language specific to a particular computer architecture?,"Because assembly language depends directly on the machine code instructions, which vary between different computer architectures."
+Can there be multiple assemblers for the same architecture?,"Yes, sometimes there is more than one assembler available for the same computer architecture."
+Can an assembler be specific to an operating system?,"Yes, sometimes an assembler is specific to a particular operating system or multiple operating systems."
+Does assembly language typically provide specific syntax for operating system calls?,"No, most assembly languages do not provide specific syntax for operating system calls."
+How does assembly language interact with the processor's capabilities regarding operating systems?,"Assembly language can be used universally with any operating system because it provides access to all the real capabilities of the processor, upon which all system call mechanisms ultimately rest."
+How do high-level programming languages compare to assembly languages in terms of portability?,"Most high-level programming languages are generally portable across multiple architectures, unlike assembly languages."
+What are the processes required for high-level languages to be executed on different architectures?,"High-level languages require interpreting or compiling, which are much more complicated tasks than assembling."
+"In the early decades of computing, what types of programming were commonly done in assembly language?",Both systems programming and application programming were commonly done entirely in assembly language.
+Is assembly language still widely used for all types of programming today?,"No, while still irreplaceable for some purposes, the majority of programming is now conducted in higher-level interpreted and compiled languages."
+"What did Fred Brooks say about the shift away from assembly language in ""No Silver Bullet""?","He stated that the progressive use of high-level languages has been the most powerful stroke for software productivity, reliability, and simplicity, estimating at least a factor of five in productivity gains."
+"In modern computing, where is assembly language typically used within larger systems?",Small amounts of assembly language code are often used within larger systems implemented in a higher-level language for performance reasons or to interact directly with hardware.
+What percentage of the Linux kernel source code (version 4.9) is written in assembly language?,Just under 2% of version 4.9 of the Linux kernel source code is written in assembly.
+What is a mnemonic in assembly language?,"A mnemonic is a symbolic name used to represent a low-level machine instruction or opcode, a directive, or an architectural register."
+What are operands in assembly language instructions?,Operands are one or more values or references that an instruction operates on.
+What features do most assemblers provide to make programming easier?,"Most assemblers permit named constants, registers, and labels for program and memory locations, and can calculate expressions for operands, freeing programmers from tedious calculations and improving readability."
+How can elements like constants and addresses be combined in assembly language instructions?,"Depending on the architecture, these elements may be combined for specific instructions or addressing modes using offsets or other data as well as fixed addresses."
+What additional mechanisms do many assemblers offer to aid program development and debugging?,"Many assemblers offer additional mechanisms to facilitate program development, control the assembly process, and aid debugging."
+How was assembly language syntax often structured for machines using punched cards?,"It was often column-oriented, with specific fields placed in specific columns."
+What is free-form syntax in assemblers?,Free-form syntax has fields separated by delimiters such as punctuation or white space.
+What is a hybrid syntax in assemblers?,"Hybrid syntax has some elements, like labels, in a specific column, while other fields are separated by delimiters."
+What is a macro assembler?,"A macro assembler is an assembler that includes a macroinstruction facility, allowing parameterized assembly language text to be represented by a name for later insertion."
+"What is ""open code"" in the context of assembly language?",Open code refers to any assembler input that is outside of a macro definition.
+What is a cross assembler?,A cross assembler is an assembler that runs on a host system different from the target system on which the resulting code will run.
+Why are cross assemblers useful for embedded systems?,They facilitate the development of programs for systems that may not have the resources to support software development themselves.
+How is the object code from a cross assembler typically transferred to the target system?,"It is transferred via read-only memory (ROM, EPROM), a programmer, or a data link."
+What is a high-level assembler?,"A high-level assembler is a program that provides language abstractions more often associated with high-level languages, such as advanced control structures and abstract data types."
+What is a microassembler?,A microassembler is a program that helps prepare a microprogram to control the low-level operation of a computer.
+What is a meta-assembler?,"A meta-assembler is a program that can accept the description of an assembly language and generate an assembler for it, or assemble code based on such a description."
+What is an inline assembler (or embedded assembler)?,An inline assembler is assembler code that is contained within a high-level language program.
+What is the primary function of an assembler program?,An assembler program creates object code by translating mnemonics and syntax for operations and addressing modes into their numerical equivalents.
+What does the object code typically include?,The object code typically includes an operation code (opcode) as well as other control bits and data.
+What other tasks does an assembler perform besides direct translation?,The assembler also calculates constant expressions and resolves symbolic names for memory locations and other entities.
+Why is the use of symbolic references a key feature of assemblers?,It saves tedious calculations and manual address updates after program modifications.
+What are macro facilities used for in assemblers?,"Macro facilities are used for performing textual substitution, such as generating common short sequences of instructions inline."
+Can some assemblers perform optimizations?,"Yes, some assemblers may be able to perform simple types of instruction set-specific optimizations, such as jump-sizing or instruction scheduling."
+When did assemblers become available in the history of computing?,"Assemblers have been available since the 1950s, representing the first step above machine language."
+How can different assemblers for the same CPU architecture vary?,They can have different syntax for the same instructions.
+What is the difference between one-pass and multi-pass assemblers?,"One-pass assemblers process the source code once and may require errata for forward references, while multi-pass assemblers make multiple passes to build a symbol table before generating code."
+"What is an ""erratum"" in the context of a one-pass assembler?","An erratum is a note emitted by a one-pass assembler after a symbol's definition, telling the linker or loader to patch locations where the undefined symbol was used."
+What is the advantage of a multi-pass assembler over a one-pass assembler?,The absence of errata in multi-pass assemblers makes the linking process faster.
+What are some language abstractions provided by more sophisticated high-level assemblers?,"These include high-level procedure/function declarations, advanced control structures, and high-level abstract data types."
+What are the fundamental components of a program written in assembly language?,"It consists of mnemonic processor instructions, meta-statements (directives, pseudo-instructions), comments, and data."
+What does an assembly language instruction typically consist of?,"It usually consists of an opcode mnemonic followed by an operand (a list of data, arguments, or parameters)."
+"What are ""implied"" instructions in assembly language?",These are instructions where the data upon which the instruction operates is implicitly defined by the instruction itself and does not require an explicit operand.
+What is the role of an assembler in relation to assembly language instructions?,The assembler translates assembly language instructions into machine language instructions that can be executed by the computer.
+What is a disassembler?,A disassembler is a program that can at least partially reverse the process of assembly by converting machine code back into assembly language.
+How does the correspondence between assembly language and machine language compare to that of high-level languages?,"There is often a one-to-one correspondence between simple assembly statements and machine language instructions, unlike high-level languages."
+What are pseudoinstructions in assembly language?,Pseudoinstructions are essentially macros that expand into several machine language instructions to provide commonly needed functionality.
+Why can't a disassembler reconstruct macro and pseudoinstruction invocations?,Because the information about pseudoinstructions and macros is not present in the object program.
+Why does each computer architecture have its own distinct assembly language?,"Because computer architectures differ in their supported operations, register sizes and numbers, and data representations, and the assembly language reflects these differences."
+What is a binary number?,"A binary number is a number expressed in the base-2 numeral system, using only the symbols ""0"" and ""1"". It can also refer to a rational number with a finite binary representation."
+What is the radix of the binary numeral system?,The radix of the binary numeral system is 2.
+What is each digit in a binary number called?,"Each digit in a binary number is called a bit, or binary digit."
+Why is the binary system used in modern computers?,The binary system is used in almost all modern computers due to its straightforward implementation in digital electronic circuitry using logic gates and its noise immunity.
+Who were some of the early European scholars who studied the modern binary number system?,Thomas Harriot and Gottfried Leibniz studied the modern binary number system in the 16th and 17th centuries.
+Did systems related to binary numbers appear before the 16th and 17th centuries?,"Yes, systems related to binary numbers appeared earlier in multiple cultures, including ancient Egypt, China, Europe, and India."
+What were Horus-Eye fractions used for in ancient Egypt?,"Horus-Eye fractions were a binary numbering system used for fractional quantities of grain, liquids, or other measures."
+What binary fractions were used in the Horus-Eye system?,"The binary fractions used were 1/2, 1/4, 1/8, 1/16, 1/32, and 1/64."
+How was ancient Egyptian multiplication related to binary numbers?,The method involved doubling one number and adding the first number back based on the binary representation of the second number.
+What ancient Chinese text features a binary notation used for divination?,"The I Ching, dating from the 9th century BC in China, features a binary notation."
+What are the Bagua and hexagrams in the I Ching analogous to?,"The eight trigrams (Bagua) are analogous to three-bit binary numerals, and the 64 hexagrams are analogous to six-bit binary numerals."
+How did Shao Yong rearrange the hexagrams of the I Ching?,"Shao Yong rearranged the hexagrams in a format that resembles modern binary numbers, although not for mathematical use."
+How did Etruscan divination involve binary readings?,"Etruscans divided divination livers into sixteen parts, each producing a binary reading that was combined for a final divination."
+How did the Ancient Greek oracle at Dodona use a system similar to binary?,"It used ""yes"" and ""no"" pellets drawn from jars, the results of which were combined to form a prophecy."
+Who was the Indian scholar who developed a binary system for describing prosody?,The Indian scholar Pingala (c. 2nd century BC) developed a binary system.
+How did Pingala represent meters in his binary system?,"He described meters using short (laghu) and long (guru) syllables, where a long syllable was equal to two short syllables."
+"In Pingala's system, in which direction did the binary representations increase?",The binary representations in Pingala's system increased towards the right.
+How does the Ifá divination system in Africa relate to binary numbers?,"The Ifá has up to 256 binary signs, similar to the I Ching but with more combinations."
+What culture used a hybrid binary-decimal system before 1450?,The residents of the island of Mangareva in French Polynesia used a hybrid binary-decimal system.
+How are slit drums used in Africa and Asia in relation to binary concepts?,Slit drums with binary tones are used to encode messages.
+Who is considered a predecessor of computing science and artificial intelligence for his work with binary combinations?,"Ramon Llull, in the late 13th century, is considered a predecessor."
+What did Francis Bacon discuss in 1605 regarding binary digits?,"He discussed a system to reduce letters to sequences of binary digits, which could be encoded in text."
+What did John Napier describe in 1617 for binary calculations?,He described a system called location arithmetic using a non-positional representation by letters.
+Did Thomas Harriot publish his investigations into binary numbering systems?,"No, Thomas Harriot investigated binary systems but did not publish his results."
+Who possibly published the first account of the binary system in Europe?,"Juan Caramuel y Lobkowitz, in 1700, possibly published the first account."
+How many manuscripts on binary did Leibniz write?,Leibniz wrote in excess of a hundred manuscripts on binary.
+What was the title of Leibniz's first known work on binary in 1679?,"His first known work was “On the Binary Progression""."
+What did Leibniz introduce in his 1679 work on binary?,He introduced conversion between decimal and binary and algorithms for basic arithmetic operations.
+"What is the title of Leibniz's most well-known article on binary arithmetic, published in 1703?","His most well-known article is ""Explication de l'Arithmétique Binaire""."
+With whom did Leibniz correspond about his binary notation and the I Ching?,Leibniz corresponded with the Jesuit priest Joachim Bouvet.
+What did Leibniz and Bouvet conclude about the I Ching and binary notation?,"They concluded that the I Ching was an independent, parallel invention of binary notation."
+How did Leibniz view binary numbers in relation to his theological beliefs?,"He believed binary numbers were symbolic of the Christian idea of creatio ex nihilo, or creation out of nothing."
+Who published a landmark paper in 1854 detailing Boolean algebra?,British mathematician George Boole published the paper.
+How did Boolean algebra become instrumental in the design of digital electronic circuitry?,His logical calculus provided the foundation for implementing logic gates in circuits.
+Who implemented Boolean algebra and binary arithmetic using electronic relays and switches in their 1937 master's thesis?,Claude Shannon implemented it in his thesis at MIT.
+What was the title of Claude Shannon's master's thesis?,"The title was ""A Symbolic Analysis of Relay and Switching Circuits""."
+What was the name of the relay-based computer built by George Stibitz at Bell Labs?,"It was called the ""Model K""."
+"What could the Complex Number Computer, developed at Bell Labs, calculate?",It was able to calculate complex numbers.
+What was significant about the demonstration of the Complex Number Calculator in 1940?,"Stibitz was able to send remote commands over telephone lines by a teletype, making it the first computing machine used remotely over a phone line."
+"What computer, designed by Konrad Zuse, used Boolean logic and binary floating-point numbers?",The Z1 computer used these principles.
+How can binary numeric values be represented in modern computers?,They can be represented by two different voltages or magnetic polarities on a magnetic disk.
+What symbols are commonly used to write binary numbers?,The symbols 0 and 1 are commonly used.
+How is the base of a binary numeral often indicated when written?,"It is often indicated by a subscript (e.g., 100101₂), a suffix (e.g., 100101b), or a prefix (e.g., 0b100101)."
+How are binary numerals usually read aloud?,"Binary numerals are usually read digit-by-digit (e.g., 100 is read as ""one zero zero"")."
+Why are binary numerals read digit-by-digit?,"To distinguish them from decimal numerals and to make their binary nature explicit, avoiding confusion with decimal values."
+How does binary counting proceed?,"Similar to decimal counting, it begins with the least significant digit, incrementing through each symbol (0 and 1). When a bit reaches 1, the next increment resets it to 0 and increments the bit to its left."
+What power of 2 does each bit in a binary number represent?,"Each bit represents an increasing power of 2, starting with 2⁰ at the rightmost bit."
+How is the decimal value of a binary number determined?,"It is the sum of the powers of 2 represented by each ""1"" bit."
+When do fractions in binary arithmetic terminate?,Fractions in binary arithmetic terminate only if the denominator is a power of 2.
+Why does 1/10 not have a finite binary representation?,"Because the denominator 10 has prime factors other than 2 (specifically, 5)."
+What is the simplest arithmetic operation in binary?,The simplest arithmetic operation in binary is addition.
+What is the result of adding 1 + 1 in binary?,1 + 1 in binary results in 10 (zero with a carry of one).
+"What is the ""long carry method"" of binary addition useful for?","It is particularly useful when one of the numbers contains a long stretch of ones, simplifying the carry operations."
+How does binary subtraction work?,"Similar to decimal subtraction, involving borrowing from the next column when a smaller digit is subtracted from a larger one."
+What is the two's complement notation used for in computers?,It is used to represent negative numbers and allows subtraction to be performed as addition.
+How does binary multiplication work?,"Similar to decimal multiplication, using partial products that are either 0 (if the multiplier bit is 0) or equal to the multiplicand (if the multiplier bit is 1), shifted leftward and then summed."
+How does binary long division work?,"It is analogous to decimal long division, where the divisor is repeatedly subtracted from parts of the dividend."
+How is taking a binary square root similar to taking a decimal square root?,The process is essentially the same digit by digit but is simpler in binary due to having only two digits.
+What are bitwise operations?,"Bitwise operations are manipulations of sequences of bits using Boolean logical operators like AND, OR, XOR, and NOT."
+How can a base-10 integer be converted to its binary equivalent?,"The number is repeatedly divided by two, and the sequence of remainders (including the final quotient of one) forms the binary value."
+What is computer programming?,"Computer programming, or coding, is the creation of instruction sequences, called programs, that computers can execute to perform tasks."
+What is involved in computer programming?,It involves designing and implementing algorithms by writing code in one or more programming languages.
+What do programmers typically use?,"Programmers typically use high-level programming languages, which are more human-readable than machine code."
+What is directly executed by the central processing unit?,Machine code is directly executed by the central processing unit.
+What expertise does proficient programming usually require?,"It requires expertise in the application domain, programming languages, code libraries, specialized algorithms, and formal logic."
+What auxiliary tasks are related to programming?,"These include analyzing requirements, testing, debugging, implementing build systems, and managing derived artifacts like machine code."
+What term encompasses the larger overall process including programming?,The term software development is often used for this larger process.
+What terms are typically reserved for the writing and editing of code?,"Programming, implementation, and coding are usually reserved for this."
+When is software development sometimes known as software engineering?,Especially when it employs formal methods or follows an engineering design process.
+When did a programmable music sequencer appear?,"As early as the 9th century, invented by the Persian Banu Musa brothers."
+What did Al-Jazari invent in 1206?,A programmable drum machine where a mechanical automaton could play different rhythms via pegs and cams.
+How did the Jacquard loom produce different weaves?,"By changing the ""program"" – a series of pasteboard cards with holes."
+When did code-breaking algorithms first appear?,"In the 9th century, with Al-Kindi's cryptographic algorithm."
+What is Al-Kindi credited with describing?,"The first description of cryptanalysis by frequency analysis, the earliest code-breaking algorithm."
+When is the first computer program generally dated?,"To 1843, when Ada Lovelace published an algorithm for Bernoulli numbers."
+For what machine was Ada Lovelace's algorithm intended?,Charles Babbage's Analytical Engine.
+Who else had written a program for the Analytical Engine?,"Charles Babbage himself, in 1837."
+What broader application did Ada Lovelace foresee for the Analytical Engine?,Applications beyond just mathematical calculations.
+What concept did Herman Hollerith invent in the 1880s?,Storing data in machine-readable form.
+How were early unit record equipment programmed?,By control panels (plug boards).
+What concept was introduced in 1949 that changed program storage?,"The stored-program computer, where both programs and data were stored in memory."
+What was the language of early programs?,"Machine code, written in the instruction set of the particular machine, often in binary."
+What did assembly languages allow programmers to do?,Specify instructions in a text format with abbreviations for operation codes and meaningful names for addresses.
+What is a key characteristic of assembly language in relation to machine language?,"It has a very strong correspondence, often a one-to-one relationship, with the machine's instructions."
+Why do different machines often have different assembly languages?,Because an assembly language is closely tied to a machine's specific instruction set.
+What did high-level languages make simpler?,"The process of developing a program, making it more understandable and less hardware-dependent."
+What was the first compiler-related tool and who developed it?,"The A-0 System, developed in 1952 by Grace Hopper."
+Who coined the term 'compiler'?,Grace Hopper.
+What was the first widely used high-level language with a functional implementation?,"FORTRAN, which came out in 1957."
+What was COBOL aimed at?,Commercial data processing.
+What was Lisp primarily used for?,Computer research.
+What do compiled languages allow programmers to do?,"Write programs in syntactically richer terms, abstract code, and target varying machine instruction sets via compilation."
+How did compilers make programming easier?,By allowing programmers to specify calculations using infix notation.
+How were programs mostly entered in early days?,Using punched cards or paper tape.
+What became inexpensive enough by the late 1960s for direct program creation?,Data storage devices and computer terminals.
+What allowed for easier changes and corrections to programs compared to punched cards?,Text editors.
+What is reliability in the context of a program?,How often the program's results are correct.
+What does robustness refer to in programming?,How well a program anticipates problems due to errors (not bugs).
+What does usability encompass in program quality?,"The ergonomics of a program, or the ease with which a person can use it."
+What is portability of source code?,The range of computer hardware and operating system platforms on which it can be compiled/interpreted and run.
+What does maintainability refer to in programming?,"The ease with which a program can be modified by developers for improvements, bug fixes, or adaptation."
+What does efficiency/performance measure in a program?,"The system resources a program consumes, such as processor time and memory."
+What can help maintain qualities like reliability and maintainability?,Using automated tests and fitness functions.
+What does readability of source code refer to?,"The ease with which a human reader can comprehend the purpose, control flow, and operation of the code."
+Why is readability important in programming?,"Because programmers spend most of their time reading, understanding, reusing, and modifying existing code."
+What are some factors that contribute to code readability?,"Indent styles, comments, decomposition, and naming conventions."
+What have visual programming languages been developed to address?,Readability concerns through non-traditional approaches to code structure and display.
+What is the focus of algorithmic complexity?,Discovering and implementing the most efficient algorithms for a given class of problems.
+How are algorithms classified in terms of resource use?,Using Big O notation.
+What is often the first step in formal software development processes?,Requirements analysis.
+What is a popular approach for requirements analysis?,Use Case analysis.
+What is Agile software development characterized by?,Integrating the various stages of formal development into short cycles.
+What are popular modeling techniques in software development?,Object-Oriented Analysis and Design (OOAD) and Model-Driven Architecture (MDA).
+What is UML used for?,As a notation for both OOAD and MDA.
+What is ER Modeling used for?,Database design.
+What are some implementation techniques in programming languages?,"Imperative, functional, and logic programming languages."
+Why is it difficult to determine the most popular modern programming languages?,Because different measurement methods yield different results.
+What is debugging in software development?,Investigating and fixing problems (bugs) in a program.
+What is often the first step in debugging a problem?,To attempt to reproduce the problem.
+What tools are commonly used for debugging?,IDEs and standalone debuggers like GDB.
+What is an instruction set architecture (ISA)?,An ISA is an abstract model defining how software controls a computer's CPU or a family of computers.
+What is an implementation of an ISA?,"An implementation of an ISA is a device or program, like a CPU, that executes instructions defined by that ISA."
+What aspects does an ISA generally define?,"An ISA generally defines supported instructions, data types, registers, memory management support, fundamental features (like memory consistency and addressing modes), and the I/O model."
+What key benefit does an ISA provide regarding machine code and implementations?,"An ISA specifies the behavior of machine code independent of the implementation, ensuring binary compatibility between different implementations."
+How does binary compatibility benefit users?,"Binary compatibility allows users to upgrade hardware (e.g., CPU) without needing to replace software."
+How does an ISA facilitate the evolution of microarchitectures?,"A newer, higher-performance microarchitecture implementing the same ISA can run software from previous generations."
+What role does an operating system's application binary interface (ABI) play with ISAs?,"If an OS maintains a standard ABI for an ISA, machine code will run on future implementations of that ISA and OS."
+Does an ISA supporting multiple operating systems guarantee cross-OS machine code compatibility?,"No, unless the first OS supports running machine code built for the other OS."
+How can an ISA be extended?,"An ISA can be extended by adding instructions, capabilities, or support for larger addresses and data values."
+What happens to machine code from older ISA versions when an ISA is extended?,"Implementations of the extended ISA can still execute machine code from older, non-extended versions."
+When can machine code using ISA extensions run?,Machine code using extensions can only run on implementations that support those extensions.
+Why are ISAs considered fundamental abstractions in computing?,The binary compatibility they provide makes ISAs one of the most fundamental abstractions in computing.
+How does an ISA differ from a microarchitecture?,"An ISA is the abstract model of instructions, while a microarchitecture is the specific design techniques used to implement that ISA."
+Can processors with different microarchitectures share the same ISA?,"Yes, processors with different internal designs can implement the same instruction set."
+Who developed the concept of an architecture distinct from a specific machine design?,Fred Brooks at IBM developed this concept during the design of System/360.
+What was the SPREAD compatibility objective in the System/360 design?,It postulated a single architecture for a series of five processors with varying cost and performance.
+How do some virtual machines handle bytecode ISAs?,They translate frequently used bytecode to native machine code (JIT compilation) and interpret less frequent code.
+How did Transmeta implement the x86 ISA?,Transmeta implemented the x86 ISA atop VLIW processors using translation.
+What is a common way to classify ISAs?,A common classification is by architectural complexity.
+What characterizes a complex instruction set computer (CISC)?,"A CISC has many specialized instructions, some rarely used."
+What is the focus of a reduced instruction set computer (RISC)?,"A RISC simplifies the processor by efficiently implementing frequently used instructions, with less common operations as subroutines."
+"What are VLIW, LIW, and EPIC architectures designed to exploit?",These architectures exploit instruction-level parallelism with less hardware by making the compiler responsible for scheduling.
+What are MISC and OISC architectures?,"These are architectures with even less complexity (minimal and one-instruction set computers), theoretically important but not commercialized."
+What is machine language built from?,Machine language is built up from discrete statements or instructions.
+What might a given instruction specify on a processing architecture?,"An instruction might specify an opcode, explicit operands (registers, literals, memory addresses), and addressing modes."
+How are more complex operations built up?,Complex operations are built by combining simple instructions executed sequentially or as directed by control flow instructions.
+Give examples of common data handling and memory operations.,"Setting a register to a constant, copying data between memory and registers (load/store), and reading/writing from hardware devices."
+What are some common arithmetic and logic operations?,"Add, subtract, multiply, divide, increment, decrement, bitwise operations, and comparisons."
+What are floating-point instructions used for?,They are used for arithmetic operations on floating-point numbers.
+What are some examples of control flow operations?,"Branching, conditional branching, indirect branching, skipping instructions, traps, and calls."
+What do coprocessor instructions typically handle?,They handle loading/storing data to/from a coprocessor and performing coprocessor-specific operations.
+"What characterizes ""complex"" instructions?","They perform tasks that might take multiple simpler instructions on other computers, often involving multiple steps or functional units."
+"Give examples of ""complex"" instructions.","Transferring multiple registers, moving large memory blocks, complex arithmetic (square root, etc.), SIMD instructions, and atomic test-and-set."
+Are complex instructions more common in CISC or RISC?,Complex instructions are more common in CISC instruction sets.
+What are SIMD instructions used for?,SIMD instructions perform a single operation on multiple homogeneous values in parallel.
+What does an instruction typically include on traditional architectures?,An instruction includes an opcode and zero or more operand specifiers.
+What is unique about instruction encoding in VLIW architectures?,Multiple simultaneous opcodes and operands are specified in a single instruction.
+What is unique about instruction sets in transport triggered architectures (TTA)?,"Some TTA instruction sets do not have an opcode field, only operands."
+How do 0-operand (stack) machines handle arithmetic and logic operations?,These operations lack operand specifier fields and work on the evaluation stack using postfix notation.
+What is a predicate field in conditional instructions?,It's a few bits encoding the specific condition for an operation to be performed.
+How are instruction sets categorized based on operands?,"They are categorized by the maximum number of operands explicitly specified in instructions (0-operand, 1-operand, 2-operand, 3-operand, etc.)."
+How many instructions might a 0-operand machine need for C = A + B?,"A 0-operand (stack) machine might need four instructions: push a, push b, add, pop c."
+How many instructions might a 1-operand (accumulator) machine need for C = A + B?,"A 1-operand machine might need three instructions: load a, add b, store c."
+How many instructions might a 2-operand CISC machine need for C = A + B (with one memory operand limit)?,"A 2-operand CISC machine with a one memory operand limit might need three instructions: load a,reg1; add b,reg1; store reg1,c."
+How many instructions might a 2-operand RISC machine need for C = A + B?,"A 2-operand RISC machine might need four instructions: load a,reg1; load b,reg2; add reg1,reg2; store reg2,c."
+How many instructions might a 3-operand CISC machine need for C = A + B (with two memory operand limit)?,"A 3-operand CISC machine with a two memory operand limit might need two instructions: move a,reg1; add reg1,b,c."
+How many instructions might a 3-operand RISC machine need for C = A + B?,"A 3-operand RISC machine might need four instructions: load a,reg1; load b,reg2; add reg1+reg2->reg3; store reg3,c."
+What is register pressure?,Register pressure measures the availability of free registers during program execution.
+How does increasing the number of registers affect register pressure and cost?,Increasing registers decreases register pressure but increases cost.
+Which types of ISAs generally exhibit high and low register pressure?,"Embedded ISAs like Thumb often have high register pressure, while general-purpose RISC ISAs like MIPS and Alpha have low register pressure. CISC ISAs like x86-64 also offer low register pressure."
+How does the length of an instruction vary across architectures?,Instruction length can vary from a few bits in microcontrollers to hundreds of bits in VLIW systems.
+What is a common instruction length in processors for personal computers and larger systems?,The minimum instruction size is typically between 8 and 64 bits.
+How does instruction length typically differ in RISC and CISC architectures?,"RISC architectures often have fixed-length instructions, while CISC architectures typically have variable-length instructions."
+What are some advantages of fixed-length instructions?,Fixed-length instructions are simpler to handle and easier to optimize for speed.
+What is code density?,Code density refers to the size of the instructions needed to perform a particular task.
+Why was code density important in early computing?,"Main memory was expensive and limited, so minimizing program size was crucial."
+How do RISC and CISC architectures generally compare in terms of code density?,"CISC architectures often have higher code density due to complex instructions, while RISC architectures typically have lower density as they require more simpler instructions."
+What is code compression in some embedded RISC ISAs?,It's a technique where two 16-bit instructions are packed into a 32-bit word and unpacked during decoding.
+What is the role of a compiler in code density?,Optimizing compilers have options to prioritize code density or execution speed during code generation.
+How are instructions typically specified by programmers?,Programmers typically use assembly language or high-level programming languages (which are then compiled).
+What is a model of computation?,A model of computation describes how an output of a mathematical function is computed given an input.
+What does a model of computation describe organizationally?,"A model describes how units of computations, memories, and communications are organized."
+What can be measured using a model of computation?,The computational complexity of an algorithm.
+Why are models of computation used in runtime analysis?,They allow studying the performance of algorithms independently of specific implementations and technology.
+Into what three main categories can models of computation be classified?,"Sequential models, functional models, and concurrent models."
+Name some examples of sequential models of computation.,"Finite-state machines, Post machines, pushdown automata, register machines, random-access machines, Turing machines, decision tree model, and external memory model."
+What are Post machines also known as?,Post–Turing machines and tag machines.
+Provide examples of functional models of computation.,"Abstract rewriting systems, combinatory logic, general recursive functions, and lambda calculus."
+List some concurrent models of computation.,"Actor model, cellular automaton, interaction nets, Kahn process networks, logic gates and digital circuits, Petri nets, process calculus, and Synchronous Data Flow."
+What is a characteristic of some models of computation regarding determinism?,Some models have both deterministic and nondeterministic variants.
+What do nondeterministic models correspond to in relation to finite computers?,Limits of certain sequences of finite computers.
+For what are nondeterministic models used in the context of algorithms?,The study of computational complexity.
+How do models of computation differ in their capability?,They differ in their expressive power.
+Give an example of differing expressive power between two models.,"Every function computable by a finite-state machine is also computable by a Turing machine, but not vice versa."
+What is commonly specified in runtime analysis of algorithms regarding computation?,A computational model in terms of primitive operations allowed.
+What cost is often assigned to these primitive operations?,"Unit cost, or simply unit-cost operations."
+What is a commonly used example of a computational model with unit cost operations?,The random-access machine.
+What type of memory access has a unit cost in a random-access machine?,Read and write access to all of its memory cells.
+How does a random-access machine differ from a Turing machine in terms of memory access cost?,A Turing machine does not inherently have unit cost for all memory accesses.
+What is a stack machine also known as?,A 0-operand machine.
+What is an accumulator machine also known as?,A 1-operand machine.
+What are register machines also known as in terms of operands?,"2, 3,... operand machines."
+Name a model of computation related to memory access.,Cell-probe model.
+What is the Robertson–Webb query model?,A model of computation related to querying.
+What is the Chomsky hierarchy?,A classification of formal grammars that relates to the power of different automata.
+What concept is related to the computational power of models?,Turing completeness.
+"Who wrote the book ""Models of Computation: An Introduction to Computability Theory""?",Maribel Fernández.
+"In what year was ""Models of Computation: An Introduction to Computability Theory"" published?",2009.
+"What is the ISBN of ""Models of Computation: An Introduction to Computability Theory""?",978-1-84882-433-1.
+"What series is ""Models of Computation: An Introduction to Computability Theory"" part of?",Undergraduate Topics in Computer Science.
+"Who wrote the book ""Models Of Computation: Exploring the Power of Computing""?",John E. Savage.
+"In what year was ""Models Of Computation: Exploring the Power of Computing"" published?",1998.
+"What is the ISBN of ""Models Of Computation: Exploring the Power of Computing""?",978-0201895391.
+What is the focus of computability theory?,What can be computed in principle.
+What is the focus of computational complexity theory?,The resources (like time and memory) required to compute functions.
+How does a model of computation help in understanding algorithms across different systems?,By abstracting away hardware and implementation details.
+What is a finite-state machine?,A computational model with a finite number of states and transitions between them.
+What are Post machines?,"Abstract machines similar to Turing machines, focusing on symbol manipulation on a tape."
+What is a pushdown automaton?,A finite-state machine augmented with a stack.
+What is a register machine?,A computational model that operates on a finite number of registers holding integers.
+What is a random-access machine (RAM)?,A theoretical computer with random access to its memory.
+What is a Turing machine?,A theoretical model of computation that manipulates symbols on a strip of tape according to a table of rules.
+What is a decision tree model?,"A model where computation is represented as a tree, with nodes representing decisions."
+What is the external memory model?,A model that considers the cost of transferring data between main memory and slower external storage.
+What are abstract rewriting systems?,Computational models based on repeatedly replacing parts of an expression according to a set of rules.
+What is combinatory logic?,A notation for mathematical logic that eliminates the need for variables.
+What are general recursive functions?,A class of functions that can be defined by recursion and basic arithmetic operations.
+What is lambda calculus?,A formal system in mathematical logic for expressing computation based on function abstraction and application.
+What is the actor model?,A concurrent model where computation is performed by asynchronous message passing between actors.
+What is a cellular automaton?,"A discrete model composed of a regular grid of cells, each in a finite number of states."
+What are interaction nets?,A graphical model of computation based on the interaction of agents.
+What are Kahn process networks?,A concurrent model where processes communicate through FIFO channels.
+How do logic gates and digital circuits serve as a concurrent model?,They perform computations through parallel signal propagation.
+What are Petri nets?,A graphical modeling language for concurrent systems.
+What is process calculus?,A family of formal languages for describing and analyzing concurrent systems.
+What is Synchronous Data Flow (SDF)?,A model of parallel computation where the rate of data production and consumption is fixed.
+"What does ""unit cost"" imply for primitive operations in a computational model?","Each operation is assumed to take a constant amount of time, regardless of the operands."
+How does the choice of a computational model affect the analysis of an algorithm's efficiency?,"It defines the basic operations and their costs, influencing the complexity analysis."
+Why is it useful to have different models of computation?,Different models are better suited for analyzing different types of algorithms and computational paradigms.
+What is the relationship between the Chomsky hierarchy and models of computation?,The levels of the Chomsky hierarchy correspond to the power of different types of automata (models of computation) in recognizing languages.

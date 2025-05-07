@@ -1,0 +1,40 @@
+question,answer
+How does a compiler differ from an assembler?,"A compiler translates high-level code to assembly or machine code, while an assembler converts assembly into machine code."
+Why is binary used in programming and machine code?,Binary is the fundamental language of computers due to its electrical simplicity—two states: on and off.
+How does the instruction set architecture influence programming languages?,Programming languages rely on ISAs to define what low-level operations are possible on a given CPU.
+What is the link between high-level languages and instruction cycles?,High-level instructions are eventually broken down into many low-level instructions that the CPU executes in cycles.
+How do registers play a role in machine and assembly code?,Registers are fast storage used in both machine and assembly code to store temporary data and instructions.
+What is the connection between machine code and binary numbers?,Machine code is represented as binary numbers which are directly interpreted by the CPU.
+How does assembly language make binary more readable?,Assembly replaces binary instructions with mnemonics to make code easier for humans to understand.
+How does pipelining relate to instruction set architecture?,Pipelining is a performance optimization that depends on the structure of the ISA to allow parallel instruction execution.
+Why is understanding the binary system crucial for low-level programming?,"Low-level programming requires manipulation of bits and memory directly, which relies on binary representation."
+What does an instruction set specify about the CPU?,It defines the set of operations the CPU can perform and how instructions are formatted.
+What happens when high-level code is compiled?,It's translated to machine or assembly code using the rules defined by the ISA.
+What is opcode in both machine code and assembly?,An opcode specifies the operation to be performed and is present in both binary and mnemonic form.
+Why is assembly language considered architecture-specific?,"Because it maps directly to a particular ISA, which differs across hardware."
+What role does the control unit play in executing machine instructions?,"It fetches, decodes, and executes instructions based on the ISA."
+How is binary arithmetic used in programming?,Programming often involves binary operations for logical processing and arithmetic at the hardware level.
+How does a CPU interpret assembly instructions?,They are converted into binary machine code that the CPU executes.
+What makes RISC ISAs easier to compile code for?,"Their simpler, consistent instruction formats make compiler design easier."
+What is bit masking and where is it used?,Bit masking is used in programming to manipulate specific bits using binary operations.
+Why is instruction encoding important?,It defines how machine instructions are represented in binary form.
+What is the difference between a bytecode and machine code?,"Bytecode is intermediate code executed by a virtual machine, while machine code runs directly on hardware."
+Why do some CPUs use microcode?,"To implement complex instructions in a simpler, internal form."
+How does a virtual machine relate to ISA?,"It emulates a hardware ISA, allowing programs to run on any host system."
+What is the purpose of an instruction decoder?,It translates binary instructions into signals that control CPU operations.
+How does cache relate to instruction execution?,Cache stores frequently used instructions and data for faster access during execution.
+How does endianess affect binary representation?,It determines the byte order of binary data storage.
+What is a trap instruction?,A machine instruction that triggers a software interrupt.
+How do logic gates relate to binary operations?,Logic gates perform basic binary functions that form the basis of machine instructions.
+Why is binary important for error detection?,It enables techniques like parity and checksums to detect transmission errors.
+What are macros in assembly used for?,To simplify repetitive tasks by grouping instructions under a single name.
+How are functions in programming translated to assembly?,Functions are converted into labeled blocks of instructions with stack operations for parameters.
+What does the ALU do in relation to binary operations?,The ALU performs arithmetic and logical operations on binary data.
+What is branch prediction and how does it relate to the ISA?,A CPU technique to guess instruction flow; it depends on ISA design for performance.
+What is instruction latency?,The delay from the start of an instruction to its completion.
+How does binary shift work?,"Binary shift moves bits left or right, effectively multiplying or dividing values."
+Why is hex often used instead of binary?,Hex is more compact and easier for humans to read while still mapping directly to binary.
+What is an accumulator in CPU design?,A special register used for arithmetic and logic operations.
+What is the role of the program counter?,It stores the address of the next instruction to execute.
+What is latency in instruction pipelining?,The number of cycles it takes for one instruction to pass through the pipeline.
+How does instruction scheduling optimize performance?,It rearranges instructions to avoid pipeline stalls and hazards.
