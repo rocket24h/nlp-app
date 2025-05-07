@@ -1,175 +1,96 @@
-# 🧠 Wikipedia Knowledge Graph Assistant
+# Wikipedia Knowledge Graph Assistant
 
-This project fetches Wikipedia pages, extracts their content, and builds a knowledge graph using LLMs and Neo4j. It is capable of answering natural language queries using information stored in the graph, visualizing entity relationships, and summarizing content.
+This project is designed to fetch Wikipedia pages, extract their content, and build a knowledge graph using large language models (LLMs) and Neo4j. The system enables users to query the knowledge graph in natural language, visualize entity relationships, and summarize content.
 
 ---
 
-## Task notes
-
-### 28/04
-
-- Quang: Chạy file init_test.py, nhớ thay cái biến TEST_TOPICS bằng tổng hợp mấy cái TÊN trang wikipedia. VD:
-
-```python
-TEST_TOPICS = [
-    "Python (programming language)",
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Natural Language Processing",
-    "Computer Vision",
-    "Deep Learning",
-    "Neural Networks",
-    "Data Science",
-    "Big Data",
-    "Cloud Computing",
-]
-```
-
-Cái thêm tài liệu sẽ hơi lâu, tầm 5p hay sao đó. Ngồi đợi nó báo thêm xong thì ok.
-
-Sau khi thêm được mấy cái node trên database rồi thì chạy file basic_test.py. Cần implement hàm đọc file QA, cái kết quả của kg_index.query(...) sẽ là câu trả lời mô hình mình. Chọn 2 cái metrics để đánh giá rồi note lại là được.
-
-- Thắng: Để lưu tài liệu wiki thì chạy file init_test.py NHỚ COMMENT dòng thực thi sau để không cập nhật database trên neo4j:
-
-```python
-kg.add_documents_from_texts(article_list)
-```
-
-Implement thêm một hàm summarize dựa trên mấy cái file .txt đã lưu. Hiện tại nó sẽ lưu trong thư mục trong biến môi trường DOCS_PATH. Implement thêm hàm này trong class KGIndex. Có thể tạo thêm một file test để test cái summarize.
-
-## 🚀 Features
+## Features
 
 - Automatically retrieves and stores content from selected Wikipedia pages.
-- Uses **LlamaIndex** with **Neo4j** as a graph store to build a **Knowledge Graph (KG)**.
+- Builds a knowledge graph using **LlamaIndex** and **Neo4j**.
 - Integrates with **Google Gemini (GoogleGenAI)** for triplet extraction and question answering.
 - Embeds content using **HuggingFace Sentence Transformers**.
-- Displays progress and logging with `tqdm` and Python `logging`.
+- Provides a user-friendly interface for querying and visualizing the knowledge graph.
 
 ---
 
-## 📁 Getting Started
+## Getting Started
 
-### 1. Clone the repository
+### 1. Clone the Repository
+
+Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/rocket24h/nlp-app.git
+cd nlp-app
 ```
 
-### 2. Set up your environment
+---
 
-Install dependencies:
+### 2. Set Up the Environment
+
+You can set up the environment using either `conda` or `pip`. The Python version must be 3.11.
+
+#### Using Conda
+
+Create a new environment using the provided `environment.yml` file:
+
+```bash
+conda env create -f environment.yml
+conda activate nlp_app
+```
+
+#### Using Pip
+
+Install the required dependencies from `requirements.txt`:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Configure environment variables
-
-Create a `.env` file in the project root based on `.env.template`:
-
-```
-# Google Gemini / LLM Settings
-LLM_MODEL=gemini-1.5-flash
-LLM_TEMPERATURE=0.7
-LLM_MAX_TOKENS=1500
-
-# Embedding Model
-EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
-
-# Neo4j Graph Database
-NEO4J_URL=bolt://localhost:7687
-NEO4J_USERNAME=neo4j
-NEO4J_PASSWORD=password
-
-# Directory to store downloaded Wikipedia docs
-DOCS_PATH=./wiki_docs
-
-# Directory to local graph stores
-PERSIST_PATH=./graph_store
-```
-
-> ✅ You must have access to Google Gemini API and a running Neo4j database.
-
 ---
 
-## 🛠 Usage
+### 3. Configure Environment Variables
 
-### 1. Select the Wikipedia pages
+The application requires several environment variables to function correctly. These variables are defined in the `.env` file. To simplify the setup process, run the `init_script.py` script, which will guide you through creating the `.env` file interactively.
 
-Edit the `pages_to_get` list inside `main.py` to choose the pages to fetch:
-
-```python
-pages_to_get = [
-    "Left 4 Dead",
-    "Machine learning",
-    "Python (programming language)",
-]
-```
-
-### 2. Run the script
+Run the following command:
 
 ```bash
-python main.py
+python init_script.py
 ```
 
-- Summaries of the pages will be saved to `DOCS_PATH`.
-- The script will generate triplets and upsert them into your Neo4j graph.
-- Finally, it will perform a sample query and print the result.
+The script will prompt you to enter the necessary values for the environment variables. Below is a description of the required variables:
+
+#### Environment Variables
+
+| Variable Name       | Description                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------ |
+| `GOOGLE_API_KEY`    | Your Google API key for accessing Google Gemini services.                            |
+| `DOCS_PATH`         | Directory to store downloaded Wikipedia documents.                                   |
+| `PERSIST_PATH`      | Directory to store the local graph database.                                         |
+| `EMBEDDING_MODEL`   | HuggingFace embedding model to use (e.g., `sentence-transformers/all-MiniLM-L6-v2`). |
+| `LLM_MODEL`         | LLM model to use (e.g., `gemini-2.0-flash`).                                         |
+| `LLM_TEMPERATURE`   | Temperature setting for the LLM responses.                                           |
+| `LLM_MAX_TOKENS`    | Maximum number of tokens for LLM responses.                                          |
+| `SEARCH_DEPTH`      | Depth of traversal for graph queries.                                                |
+| `CHAT_HISTORY_PATH` | Path to store chat history.                                                          |
+| `NEO4J_URL`         | URL of the Neo4j database (e.g., `bolt://localhost:7687`).                           |
+| `NEO4J_USERNAME`    | Username for the Neo4j database.                                                     |
+| `NEO4J_PASSWORD`    | Password for the Neo4j database.                                                     |
+| `NEO4J_DATABASE`    | Name of the Neo4j database.                                                          |
+
+NOTE: For NEO4J environment variables, create a free instance of Neo4J Aura Database.
+Fill in the variables based on the Database instance you created.
 
 ---
 
-## 🔍 Query Example
+### 4. Run the Application
 
-A sample query at the end of `main.py` is:
+Once the `.env` file is created, you can start the application using Streamlit:
 
-```python
-"Who are the survivors in Left 4 Dead?"
+```bash
+streamlit run app.py
 ```
 
-You can modify this to ask questions about any of the fetched pages using entities in your knowledge graph.
-
----
-
-## 📈 Visualizing the Graph
-
-Once data is loaded into Neo4j, you can visualize and explore the triplets using [Neo4j Browser](https://neo4j.com/developer/neo4j-browser/).
-
-Log into the Neo4j dashboard and run:
-
-```cypher
-MATCH (n)-[r]->(m) RETURN n, r, m LIMIT 100
-```
-
----
-
-## 📦 Dependencies
-
-- `llama-index`
-- `neo4j`
-- `wikipedia`
-- `tqdm`
-- `python-dotenv`
-- `huggingface_hub` (for embeddings)
-
-Make sure all necessary packages are listed in your `requirements.txt`.
-
----
-
-## ✍️ Notes
-
-- The system uses a custom prompt template to generate triplets.
-- The LLM retry mechanism helps avoid quota issues by backing off exponentially.
-- You can customize the traversal depth and response strategy in `query_engine`.
-
----
-
-## 📜 License
-
-MIT License — feel free to use, share, and contribute!
-
----
-
-## 🙋‍♂️ Contributing
-
-Pull requests and issues are welcome! If you find bugs or want to suggest enhancements, feel free to open one.
+This will launch the application in your default web browser.
