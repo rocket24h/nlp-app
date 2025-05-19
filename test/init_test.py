@@ -19,16 +19,12 @@ load_dotenv()
 
 
 TEST_TOPICS = [
-    "Python (programming language)",
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Natural Language Processing",
-    "Computer Vision",
-    "Deep Learning",
-    "Neural Networks",
-    "Data Science",
-    "Big Data",
-    "Cloud Computing",
+    "Binary number",
+    "Assembly language",
+    "Instruction set architecture",
+    "Machine code",
+    "Computer programming",
+    "Barack Obama"
 ]
 
 

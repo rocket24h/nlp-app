@@ -59,7 +59,7 @@ def kg_query(query, retry_limit=5, retry_delay=10, backoff=True):
     while attempt < retry_limit:
         try:
             response = kg_index.query(query)
-            return response.response  # success, return early
+            return response.response
         except Exception as e:
             if "resource_exhausted" in str(e).lower():
                 attempt += 1
@@ -102,8 +102,6 @@ for name, df in datasets.items():
         ground_truth_answers.append(ground_truth)
         time.sleep(2)
 
-    # Calculate bootstrap confidence intervals for BLEU scores
-
     # BERTScore batch eval
     P, R, F1 = bert_score(predicted_answers, ground_truth_answers,
                           lang="en", model_type="bert-base-uncased")
@@ -114,7 +112,6 @@ for name, df in datasets.items():
         "BERTScore (F1)": float(F1.mean()),
     }
 
-# Print results
 for dataset, metrics in results.items():
     print(f"\nResults for {dataset}:")
     for metric, score in metrics.items():

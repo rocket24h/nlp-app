@@ -17,11 +17,8 @@ from modules.kg_index import load_KG_from_config
 # KGIndex instance
 kg_index = load_KG_from_config()
 
-# File paths
-# Replace with the actual path if needed
 input_file = "test/qa_test_results.txt"
 
-# Initialize an empty list to store triplets
 triplets = []
 
 # Read the text file and extract triplets
@@ -42,7 +39,7 @@ with open(input_file, "r", encoding="utf-8") as file:
 
 print(f"Loaded {len(triplets)} triplets from the file.")
 
-# LLM Judge
+# LLM Judge promt
 prompt = f"You are a judge with profound knowledge spanning across multiple domains. Given the following question and two answers: one is from our system, one is the ground truth \
         Please rate the answers with either 0 or 1, with 0 meaning the answer is wrong, ambiguous or the system can't answer from the given context; and 1 meaning the answer is correct, and/or can answer the question. \
         Question: {question} \nAnswer: {predicted} \nGround truth: {ground_truth}\

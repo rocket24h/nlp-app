@@ -4,7 +4,6 @@ from llama_index.core.node_parser import SentenceSplitter
 from llama_index.core import (
     SimpleDirectoryReader,
     PropertyGraphIndex,
-
     Document,
 )
 from llama_index.graph_stores.neo4j import Neo4jPropertyGraphStore

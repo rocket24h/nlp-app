@@ -43,3 +43,11 @@ plt.ylabel("Frequency")
 plt.legend()
 plt.grid(axis="y", linestyle="--", alpha=0.7)
 plt.show()
+
+# Print all score counter
+print("Score Counter:")
+for score in set(first_300_scores):
+    print(f"300 - Score {score}: {first_300_scores.count(score)} occurrences")
+
+for score in set(last_50_scores):
+    print(f"50 - Score {score}: {last_50_scores.count(score)} occurrences")
